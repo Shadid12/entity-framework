@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const EntityRouter_1 = __importDefault(require("./EntityRouter"));
 class APIServer {
     constructor() {
         this._app = express_1.default();
@@ -43,6 +44,11 @@ class APIServer {
         this._server = this._app.listen(this._app.get("port"), () => {
             console.log("Server is running on port " + this._app.get("port"));
         });
+    }
+    addEntity(clazz) {
+        const name = Reflect.getMetadata("entity:name", clazz);
+        let entityRouter = new EntityRouter_1.default(name, clazz);
+        this._app.use(`/${name}`, entityRouter.router);
     }
 }
 exports.default = APIServer;

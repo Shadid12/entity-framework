@@ -1,5 +1,6 @@
-import BaseEntity, { EntityTypeInstance } from "./entities/BaseEntity";
+import BaseEntity, { EntityTypeInstance, EntityFactory } from "./entities/BaseEntity";
 import express, { Router, Request, Response } from "express";
+import * as uuid from 'uuid';
 import { db } from "./app";
 
 
@@ -56,7 +57,11 @@ export default class EntityRouter<T extends BaseEntity> {
     }
 
     private createEntity(req: Request, res: Response) {
-        // TODO - Implement setting ID
+        let newEntity = EntityFactory.fromPersistenceObject<T>(req.body, this.classRef);
+        const idProperty = Reflect.getMetadata("entity:id", newEntity);
+        newEntity[idProperty] = uuid.v4();
+        db.push(`/${this.name}/${newEntity[idProperty]}`, newEntity.getPersistenceObject());
+        res.status(200).json(newEntity);
     }
 
     private updateEntity(req: Request, res: Response) {

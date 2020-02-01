@@ -2,6 +2,7 @@ import * as http from "http";
 import express, { Express } from "express";
 import bodyParser from "body-parser";
 import BaseEntity from "./entities/BaseEntity";
+import EntityRouter from "./EntityRouter";
 
 export default class APIServer {
     private _app: Express;
@@ -56,6 +57,8 @@ export default class APIServer {
     }
 
     public addEntity<T extends BaseEntity>(clazz) {
-        // TODO - Implement
+        const name = Reflect.getMetadata("entity:name", clazz);
+        let entityRouter = new EntityRouter<T>(name, clazz);
+        this._app.use(`/${name}`, entityRouter.router);
     }
 }

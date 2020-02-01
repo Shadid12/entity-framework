@@ -1,0 +1,18 @@
+{
+    "author": {
+        "8a91a0f4-39c9-4d54-aff0-b636a667c560": {
+            "id": "8a91a0f4-39c9-4d54-aff0-b636a667c560",
+            "firstName": "Steven",
+            "lastName": "Hawking",
+            "email": "steve@gmail.com",
+            "alias": "sh"
+        },
+        "18583e4a-1e4e-487b-9004-13b195ec42bc": {
+            "id": "18583e4a-1e4e-487b-9004-13b195ec42bc",
+            "firstName": "Steven",
+            "lastName": "Hawking",
+            "email": "steve@gmail.com",
+            "alias": "sh"
+        }
+    }
+}
