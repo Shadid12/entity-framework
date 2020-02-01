@@ -1,6 +1,6 @@
 import BaseEntity, { EntityTypeInstance } from "./entities/BaseEntity";
-import express, { Router, Request, Response } from 'express';
-import { db } from './app';
+import express, { Router, Request, Response } from "express";
+import { db } from "./app";
 
 
 export default class EntityRouter<T extends BaseEntity> {
