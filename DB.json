@@ -14,5 +14,13 @@
             "email": "steve@gmail.com",
             "alias": "sh"
         }
+    },
+    "book": {
+        "349a7c69-75ac-45e1-b423-88172829df60": {
+            "id": "349a7c69-75ac-45e1-b423-88172829df60",
+            "title": "A brief History of Time",
+            "author": "Steven Hawking",
+            "authorId": "2020202020"
+        }
     }
 }

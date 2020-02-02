@@ -65,7 +65,27 @@ export default class EntityRouter<T extends BaseEntity> {
     }
 
     private updateEntity(req: Request, res: Response) {
-        // TODO - Implement updating object
+        // Does entity exist with ID
+        let data = {}
+        try {
+            data = db.getData(`/${this.name}/${req.params.id}`);
+        } catch (err) {
+            res.status(404).json({ error: "Object does not exist" });
+            return;
+        }
+
+        // Update Object with new values
+        let updatedData = req.body;
+        let updatedObj = EntityFactory.fromPersistenceObject(data, this.classRef);
+        const propKeys = Object.keys(updatedData);
+        for (const propKey of propKeys) {
+            updatedObj[propKey] = updatedData[propKey];
+        }
+
+        // Save and Return data
+        db.push(`/${this.name}/${req.params.id}`, updatedData, false);
+        data = db.getData(`/${this.name}/${req.params.id}`);
+        res.json(data);
     }
 
     private deleteEntity(req: Request, res: Response) {
