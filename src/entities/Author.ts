@@ -1,6 +1,6 @@
 import BaseEntity from './BaseEntity';
 import { entity, id, persist } from '../decorators/entity';
-import { required, isEmail } from '../decorators/validators';
+import { required, isEmail, validate } from '../decorators/validators';
 
 @entity("author")
 export default class Author extends BaseEntity {

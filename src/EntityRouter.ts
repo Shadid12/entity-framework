@@ -3,6 +3,7 @@ import express, { Router, Request, Response } from "express";
 import * as uuid from 'uuid';
 import { db } from "./app";
 import { validate } from "./decorators/validators";
+import { auth } from "./decorators/auth";
 
 
 export default class EntityRouter<T extends BaseEntity> {
@@ -57,6 +58,7 @@ export default class EntityRouter<T extends BaseEntity> {
         res.json(data);
     }
 
+    @auth()
     private createEntity(req: Request, res: Response) {
         let newEntity = EntityFactory.fromPersistenceObject<T>(req.body, this.classRef);
         
