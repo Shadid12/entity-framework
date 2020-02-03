@@ -1,18 +1,19 @@
 {
     "author": {
-        "8a91a0f4-39c9-4d54-aff0-b636a667c560": {
-            "id": "8a91a0f4-39c9-4d54-aff0-b636a667c560",
-            "firstName": "Steven",
+        "e6001604-a29a-448a-8e50-bca04550c75f": {
+            "id": "e6001604-a29a-448a-8e50-bca04550c75f",
             "lastName": "Hawking",
             "email": "steve@gmail.com",
             "alias": "sh"
         },
-        "18583e4a-1e4e-487b-9004-13b195ec42bc": {
-            "id": "18583e4a-1e4e-487b-9004-13b195ec42bc",
-            "firstName": "Steven",
-            "lastName": "Hawking",
-            "email": "steve@gmail.com",
-            "alias": "sh"
+        "727dc2ba-c081-4c8c-bd6b-b8e87edcfd4b": {
+            "id": "727dc2ba-c081-4c8c-bd6b-b8e87edcfd4b"
+        },
+        "35e0cca7-b75e-4e5c-9859-63b0176b608d": {
+            "id": "35e0cca7-b75e-4e5c-9859-63b0176b608d"
+        },
+        "c1f8ae87-aa82-4a3f-bef1-3e22e6eb6166": {
+            "id": "c1f8ae87-aa82-4a3f-bef1-3e22e6eb6166"
         }
     },
     "book": {

@@ -7,6 +7,31 @@ interface ValidationRule {
     validator: ValidationFunction;
 }
 
+export function validate(object: any) {
+    const keys = Reflect.getMetadata("validation:properties", object) as string[];
+    let errorMap = {};
+
+    if (!keys || !Array.isArray(keys)) {
+        return errorMap;
+    }
+
+    for (const key of keys) {
+        const rules: ValidationRule[] = Reflect.getMetadata("validation:rules", object, key) as ValidationRule[];
+        if (!Array.isArray(rules)) {
+            continue;
+        }
+        for (const rule of rules) {
+            const errorMessage = rule.validator(object, key, rule.validationOptions);
+            if (errorMessage) {
+                errorMap[key] = errorMap[key] || [];
+                errorMap[key].push(errorMessage);
+            }
+        }
+    }
+
+    return errorMap;
+}
+
 
 export function required(target: any, propertyKey: string) {
     addValidation(target, propertyKey, requiredValidatior);

@@ -2,6 +2,7 @@ import BaseEntity, { EntityTypeInstance, EntityFactory } from "./entities/BaseEn
 import express, { Router, Request, Response } from "express";
 import * as uuid from 'uuid';
 import { db } from "./app";
+import { validate } from "./decorators/validators";
 
 
 export default class EntityRouter<T extends BaseEntity> {
@@ -58,6 +59,14 @@ export default class EntityRouter<T extends BaseEntity> {
 
     private createEntity(req: Request, res: Response) {
         let newEntity = EntityFactory.fromPersistenceObject<T>(req.body, this.classRef);
+        
+        let errorMap = validate(newEntity);
+        if (Object.keys(errorMap).length > 0) {
+            const output = { errors: errorMap };
+            res.status(400).json(output);
+            return;
+        }
+
         const idProperty = Reflect.getMetadata("entity:id", newEntity);
         newEntity[idProperty] = uuid.v4();
         db.push(`/${this.name}/${newEntity[idProperty]}`, newEntity.getPersistenceObject());
